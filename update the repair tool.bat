@@ -96,3 +96,10 @@ echo If the Start Menu/taksbar still freeze after several hours, check Task Mana
 
 npause
 exit /b 0
+
+
+:: --- Improved AppX Repair (Safe Mode Compatible) ---
+PowerShell -NoProfile -ExecutionPolicy Bypass -Command "Get-AppxPackage -AllUsers Microsoft.Windows.StartMenuExperienceHost | Stop-Process -Force -ErrorAction SilentlyContinue" >> "%LOGFILE%" 2>&1
+PowerShell -NoProfile -ExecutionPolicy Bypass -Command "Get-AppxPackage -AllUsers Microsoft.Windows.StartMenuExperienceHost | Reset-AppxPackage -ErrorAction Continue" >> "%LOGFILE%" 2>&1
+PowerShell -NoProfile -ExecutionPolicy Bypass -Command "Get-AppxPackage -AllUsers Microsoft.Windows.ShellExperienceHost | Stop-Process -Force -ErrorAction SilentlyContinue" >> "%LOGFILE%" 2>&1
+PowerShell -NoProfile -ExecutionPolicy Bypass -Command "Get-AppxPackage -AllUsers Microsoft.Windows.ShellExperienceHost | Reset-AppxPackage -ErrorAction Continue" >> "%LOGFILE%" 2>&1
